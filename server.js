@@ -6,7 +6,7 @@ const connection=require("./Config/db")
 const TodoRouter=require("./routes/Todo.Route")
 
 
-const port=process.env || 7000;
+const PORT=process.env || 7000;
 
 const app=express();
 app.use(express.json());
@@ -21,18 +21,13 @@ app.use(cors({
 app.use("/products",TodoRouter)
 
 
-app.listen(port,async()=>{
-    try{
-        await connection;
-        console.log("Connected to DB Successfully")
-    }
-    catch(err){
-        console.log("Error connecting to DB")
-        console.log(err)
-    }
-    console.log("Listening on PORT 7000")
-})
-
+app.connect(err => {
+    if(err){ console.error(err); return false;}
+    // connection to mongo is successful, listen for requests
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+});
 
 
 
