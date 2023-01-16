@@ -13,7 +13,7 @@ app.use(cors({
 }))
 
 
-app.use("/",TodoRouter);
+app.use("/products",TodoRouter);
 
 
 
