@@ -18,7 +18,7 @@ TodoRouter.get("/",async(req,res)=>{
    
 
 try{
-    const todos=await Todomodel.find(query);
+    const todos=await Todomodel.find();
     res.send(todos);
 }
 catch(err){
