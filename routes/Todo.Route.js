@@ -21,7 +21,7 @@ TodoRouter.get("/",async(req,res)=>{
 
 TodoRouter.get("/:id",async(req,res)=>{
     const id=req.params.id;
-    let todos=await Todomodel.find({id});
+    let todos=await Todomodel.findOne({id});
     res.send(todos)
 
 })
