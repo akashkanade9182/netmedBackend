@@ -7,38 +7,28 @@ const Todomodel=require("../models/Todo.model")
 
 
 
+
+
 const TodoRouter=express.Router();
 
 
-
-
 TodoRouter.get("/",async(req,res)=>{
-    const query=req.query;
-    
-   
+    let query=req.query;
+    let todos=await Todomodel.find(query);
+    res.send(todos)
 
-try{
-    const todos=await Todomodel.find();
-    res.send(todos);
-}
-catch(err){
-    console.log(err);
-    res.send("error in getting todos")
-}
 })
 
-TodoRouter.get("/:userId",async(req,res)=>{
-  const Id=req.params.userId
 
-try{
-    const todos=await Todomodel.find({_id:Id});
-    res.send(todos);
-}
-catch(err){
-    console.log(err);
-    res.send("error in getting todos")
-}
+TodoRouter.patch("/:id",async(req,res)=>{
+    const id=req.params.id;
+    let payload=req.body;
+  
+    await Todomodel.findOneAndUpdate({id},payload)
+    const note = await Todomodel.findOne({id:id})
+    res.send(note)
 })
+
 
 
 

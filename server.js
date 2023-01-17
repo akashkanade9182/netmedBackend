@@ -3,7 +3,7 @@ const cors = require("cors")
 
 
 const connection=require("./config/db")
-const TodoRouter=require("./models/Todo.model")
+const TodoRouter=require("./routes/Todo.Route")
 
 
 const app=express()
@@ -13,7 +13,7 @@ app.use(cors({
 }))
 
 
-app.use("/products",TodoRouter);
+app.use("/products",TodoRouter)
 
 
 
