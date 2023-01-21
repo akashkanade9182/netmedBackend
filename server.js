@@ -13,7 +13,7 @@ app.use(cors({
 }))
 
 
-app.use("/products",TodoRouter)
+app.use("/netmed",TodoRouter)
 
 app.use("/notes",NoteRouter)
 
