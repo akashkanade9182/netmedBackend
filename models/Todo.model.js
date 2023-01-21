@@ -13,6 +13,6 @@ const todoSchema=mongoose.Schema({
     quantity: {type:Number,require:true},
 })
 
-const Todomodel=mongoose.model("products",todoSchema);
+const Todomodel=mongoose.model("netmed",todoSchema);
 
 module.exports=Todomodel;
