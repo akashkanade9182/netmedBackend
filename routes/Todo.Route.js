@@ -15,6 +15,7 @@ const TodoRouter=express.Router();
 TodoRouter.get("/",async(req,res)=>{
     let query=req.query;
     let todos=await Todomodel.find(query);
+    console.log(todos)
     res.send(todos)
 
 })
