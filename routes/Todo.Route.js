@@ -59,8 +59,8 @@ TodoRouter.patch("/:id",async(req,res)=>{
     const id=req.params.id;
     let payload=req.body;
   
-    await Todomodel.findOneAndUpdate({id},payload)
-    const note = await Todomodel.findOne({id:id})
+    await Todomodel.findOneAndUpdate({_id:id},payload)
+    const note = await Todomodel.findOne({_id:id})
     res.send(note)
 })
 
