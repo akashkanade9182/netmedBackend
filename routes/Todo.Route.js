@@ -48,7 +48,8 @@ TodoRouter.post("/",async(req,res)=>{
 
 TodoRouter.get("/:id",async(req,res)=>{
     const id=req.params.id;
-    let todos=await Todomodel.findOne({id});
+    let todos=await Todomodel.findById({_id:id});
+    console.log(id)
     res.send(todos)
 
 })
