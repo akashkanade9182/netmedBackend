@@ -3,16 +3,16 @@ const express=require("express");
 
 
 
-const Todomodel=require("../models/Todo.model")
+const Geekmodel=require("../models/geekbuying.model")
 
 
 
 
 
-const TodoRouter=express.Router();
+const geekRouter=express.Router();
 
 
-TodoRouter.get("/",async(req,res)=>{
+geekRouter.get("/",async(req,res)=>{
     let query=req.query;
     let sortorder;
     if(req.query._order){
@@ -31,24 +31,24 @@ TodoRouter.get("/",async(req,res)=>{
 
     let todos
     if(query._sort){
-        todos=await Todomodel.find(filter).sort({price:sortorder});
+        todos=await Geekmodel.find(filter).sort({price:sortorder});
     }else{
-        todos=await Todomodel.find(filter);
+        todos=await Geekmodel.find(filter);
     }
     res.send(todos)
 
 })
 
-TodoRouter.post("/",async(req,res)=>{
+geekRouter.post("/",async(req,res)=>{
     let data=req.body;
-    let todos=new Todomodel(data);
+    let todos=new Geekmodel(data);
     await todos.save();
     res("product added successfully")
 })
 
-TodoRouter.get("/:id",async(req,res)=>{
+geekRouter.get("/:id",async(req,res)=>{
     const id=req.params.id;
-    let todos=await Todomodel.findById({_id:id});
+    let todos=await Geekmodel.findById({_id:id});
     console.log(id)
     res.send(todos)
 
@@ -56,29 +56,16 @@ TodoRouter.get("/:id",async(req,res)=>{
 
 
 
-TodoRouter.patch("/:id",async(req,res)=>{
+geekRouter.patch("/:id",async(req,res)=>{
     const id=req.params.id;
     let payload=req.body;
   
-    await Todomodel.findOneAndUpdate({_id:id},payload)
-    const note = await Todomodel.findOne({_id:id})
+    await Geekmodel.findOneAndUpdate({_id:id},payload)
+    const note = await Geekmodel.findOne({_id:id})
     res.send(note)
 })
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports=TodoRouter
+module.exports=geekRouter
