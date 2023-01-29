@@ -39,6 +39,22 @@ geekRouter.get("/",async(req,res)=>{
 
 })
 
+geekRouter.get("/title",async(req,res)=>{
+    let query=req.query;
+    
+   try{
+ let result=await Geekmodel.find({title:{$regex:query.title,$options:'i'}})
+   }
+   catch(e){
+    res.status(400).json({ message: 'Invalid data provided' })
+   }
+   
+
+
+
+})
+
+
 geekRouter.post("/",async(req,res)=>{
     let data=req.body;
     let todos=new Geekmodel(data);
