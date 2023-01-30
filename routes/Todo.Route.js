@@ -39,6 +39,22 @@ TodoRouter.get("/",async(req,res)=>{
 
 })
 
+TodoRouter.get("/title",async(req,res)=>{
+    let query=req.query;
+    
+   try{
+ let result=await Todomodel.find({title:{$regex:query.title,$options:'i'}})
+ res.send(result)
+   }
+   catch(e){
+    res.status(400).json({ message: 'Invalid data provided' })
+   }
+   
+
+
+
+})
+
 TodoRouter.post("/",async(req,res)=>{
     let data=req.body;
     let todos=new Todomodel(data);
