@@ -35,7 +35,12 @@ TodoRouter.get("/",async(req,res)=>{
     }else{
         todos=await Todomodel.find(filter);
     }
-    res.send(todos)
+    if(todos){
+        res.status(200).send(todos) 
+    }else{
+        res.status(4000).send("somthing is error")
+
+    }
 
 })
 
