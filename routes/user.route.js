@@ -34,16 +34,17 @@ userRouter.post("/login",async(req,res)=>{
     const {email,password}=req.body;
     const presentuser=await Usermodel.find({email});
     if(presentuser.length===0){
-        res.send("wrong email")
+        res.status(400).send("wrong email")
     }
     const hash_password=presentuser[0].password;
     const userId=presentuser[0]._id;
+    const {name,address,mobile}=presentuser[0]
     try{
         bcrypt.compare(password, hash_password, function(err, result) {
             if(result){
                 const token= jwt.sign({ "userId":userId }, 'shhhhh');
                 if(token){
-                    res.status(200).send({"mess":"longin succefull",token:token})
+                    res.status(200).send({"mess":"longin succefull",token:token,user:{email:presentuser[0].email,name,address,mobile}})
                 }else{
                     res.status(400).send("error in getting token")
                 }
