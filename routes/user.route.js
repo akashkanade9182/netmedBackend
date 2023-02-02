@@ -16,7 +16,7 @@ userRouter.post("/signup",async(req,res)=>{
             bcrypt.hash(password, 4, async function(err, hash) {
                 const user=new Usermodel({email,password:hash,name,address,mobile})
                 await user.save();
-                res.send("Singup Succefully")
+                res.status(200).send("Singup Succefully")
              
             });
 
@@ -26,7 +26,7 @@ userRouter.post("/signup",async(req,res)=>{
     }
     catch(err){
             console.log(err)
-            res.send("error in signup")
+            res.status(400).send("error in signup")
     }
 
 })
