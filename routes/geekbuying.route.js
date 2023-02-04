@@ -109,7 +109,7 @@ geekRouter.patch("/:id",async(req,res)=>{
     let payload=req.body;
   
     await Geekmodel.findOneAndUpdate({_id:id},payload)
-    const note = await Geekmodel.findOne({_id:id})
+    const note = await Geekmodel.find()
     res.send(note)
 })
 
