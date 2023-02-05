@@ -61,7 +61,7 @@ geekRouter.get("/homepage",async(req,res)=>{
         query.brand && (filter.brand={ $in: query.brand});
         query.price_lte && (filter.price={ $gt: 0, $lt: query.price_lte })
         let startindex=(query.page-1)*query.limit;
-        todos=await Geekmodel.find(filter).skip(startindex).limit(query.limit);
+        todos=await Geekmodel.find(filter).sort({_id: -1}).skip(startindex).limit(query.limit);
     res.status(200).send(todos)}
     catch(e){
         res.status(400).send("error to get item")
