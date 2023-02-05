@@ -88,10 +88,15 @@ geekRouter.get("/title",async(req,res)=>{
 
 
 geekRouter.post("/",async(req,res)=>{
+ try{
     let data=req.body;
     let todos=new Geekmodel(data);
     await todos.save();
-    res("product added successfully")
+    res.status(200).send("product added successfully")
+ }
+ catch(e){
+    res.status(400).send("error in product add")
+ }
 })
 
 geekRouter.get("/:id",async(req,res)=>{
