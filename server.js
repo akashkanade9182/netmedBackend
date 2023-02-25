@@ -5,6 +5,7 @@ const cors = require("cors")
 const connection=require("./config/db")
 const TodoRouter=require("./routes/Todo.Route")
 const NoteRouter=require("./routes/Notes.Route");
+ const movieRouter=require("./routes/movie.Route")
 const geekRouter=require("./routes/geekbuying.route")
 const  userRouter=require("./routes/user.route")
 
@@ -16,6 +17,7 @@ app.use(cors({
 
 
 app.use("/netmed",TodoRouter);
+app.use("/movies",movieRouter);
 app.use("/notes",NoteRouter);
 app.use("/geekbuying",geekRouter);
 app.use("/user",userRouter);
